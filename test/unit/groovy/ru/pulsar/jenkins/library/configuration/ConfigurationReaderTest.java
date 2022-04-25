@@ -60,14 +60,17 @@ class ConfigurationReaderTest {
     assertThat(jobConfiguration.getTimeoutOptions().getBdd()).isEqualTo(120);
     assertThat(jobConfiguration.getTimeoutOptions().getZipInfoBase()).isEqualTo(123);
 
-    assertThat(jobConfiguration.getEmailNotificationOptions().getOnAlways()).isTrue();
-    assertThat(jobConfiguration.getEmailNotificationOptions().getOnSuccess()).isFalse();
-    assertThat(jobConfiguration.getEmailNotificationOptions().getAlwaysEmailOptions().getAttachLog()).isTrue();
-    assertThat(jobConfiguration.getEmailNotificationOptions().getAlwaysEmailOptions().getRecipientProviders()).hasSize(2);
-    assertThat(jobConfiguration.getEmailNotificationOptions().getAlwaysEmailOptions().getDirectRecipients()).hasSize(2);
+    assertThat(jobConfiguration.getNotificationsOptions().getEmailNotificationOptions().getOnAlways()).isTrue();
+    assertThat(jobConfiguration.getNotificationsOptions().getEmailNotificationOptions().getOnSuccess()).isFalse();
+    assertThat(jobConfiguration.getNotificationsOptions().getEmailNotificationOptions().getAlwaysEmailOptions().getAttachLog()).isTrue();
+    assertThat(jobConfiguration.getNotificationsOptions().getEmailNotificationOptions().getAlwaysEmailOptions().getRecipientProviders()).hasSize(2);
+    assertThat(jobConfiguration.getNotificationsOptions().getEmailNotificationOptions().getAlwaysEmailOptions().getDirectRecipients()).hasSize(2);
 
-    assertThat(jobConfiguration.getEmailNotificationOptions().getFailureEmailOptions().getDirectRecipients()).isEmpty();
-    assertThat(jobConfiguration.getEmailNotificationOptions().getFailureEmailOptions().getRecipientProviders()).hasSize(1);
+    assertThat(jobConfiguration.getNotificationsOptions().getEmailNotificationOptions().getFailureEmailOptions().getDirectRecipients()).isEmpty();
+    assertThat(jobConfiguration.getNotificationsOptions().getEmailNotificationOptions().getFailureEmailOptions().getRecipientProviders()).hasSize(1);
+
+    assertThat(jobConfiguration.getNotificationsOptions().getTelegramNotificationOptions().getOnAlways()).isFalse();
+    assertThat(jobConfiguration.getNotificationsOptions().getTelegramNotificationOptions().getOnFailure()).isTrue();
   }
 
 }

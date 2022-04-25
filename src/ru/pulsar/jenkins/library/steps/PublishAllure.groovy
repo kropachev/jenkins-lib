@@ -21,6 +21,10 @@ class PublishAllure implements Serializable {
 
         Logger.printLocation()
 
+        if (config == null) {
+            Logger.println("jobConfiguration is not initialized")
+        }
+
         safeUnstash('init-allure')
         safeUnstash('bdd-allure')
         if (config.smokeTestOptions.publishToAllureReport) {

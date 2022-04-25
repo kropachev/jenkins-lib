@@ -2,6 +2,7 @@
 import groovy.transform.Field
 import ru.pulsar.jenkins.library.configuration.JobConfiguration
 import ru.pulsar.jenkins.library.configuration.SourceFormat
+import ru.pulsar.jenkins.library.utils.RepoUtils
 
 import java.util.concurrent.TimeUnit
 
@@ -36,6 +37,7 @@ void call() {
                     script {
                         config = jobConfiguration() as JobConfiguration
                         agent1C = config.v8version
+                        RepoUtils.computeRepoSlug(env.GIT_URL)
                     }
                 }
             }
@@ -232,25 +234,7 @@ void call() {
             always {
                 node('agent') {
                     saveResults config
-                    sendEmail(config, config.emailNotificationOptions.alwaysEmailOptions)
-                }
-            }
-            unstable {
-                node('agent') {
-                    saveResults config
-                    sendEmail(config, config.emailNotificationOptions.unstableEmailOptions)
-                }
-            }
-            success {
-                node('agent') {
-                    saveResults config
-                    sendEmail(config, config.emailNotificationOptions.successEmailOptions)
-                }
-            }
-            failure {
-                node('agent') {
-                    saveResults config
-                    sendEmail(config, config.emailNotificationOptions.failureEmailOptions)
+                    sendNotifications(config)
                 }
             }
         }

@@ -1,4 +1,4 @@
-package ru.pulsar.jenkins.library.configuration.email
+package ru.pulsar.jenkins.library.configuration.notification.email
 
 import com.cloudbees.groovy.cps.NonCPS
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties

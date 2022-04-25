@@ -1,4 +1,4 @@
-package ru.pulsar.jenkins.library.configuration.email
+package ru.pulsar.jenkins.library.configuration.notification.email
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
