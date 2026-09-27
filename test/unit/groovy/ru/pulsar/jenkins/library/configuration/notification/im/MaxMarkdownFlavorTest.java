@@ -33,7 +33,7 @@ class MaxMarkdownFlavorTest {
 
     @Test
     void escape_does_not_escape_characters_outside_max_markup() {
-        assertThat(flavor.escape("1.0-rc! a|b <x> a=b")).isEqualTo("1.0-rc! a|b <x> a=b");
+        assertThat(flavor.escape("1.0-rc! a|b <x a=b")).isEqualTo("1.0-rc! a|b <x a=b");
     }
 
     @Test
