@@ -231,13 +231,6 @@
           },
           "description" : "Настройки рассылки результатов сборки через email"
         },
-        "max" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/IMNotificationOptions"
-          }, {
-            "description" : "Настройки рассылки результатов сборки через MAX"
-          } ]
-        },
         "discordWebhook" : {
           "allOf" : [ {
             "$ref" : "#/definitions/IMNotificationOptions"
@@ -257,6 +250,13 @@
             "$ref" : "#/definitions/IMNotificationOptions"
           }, {
             "description" : "Настройки рассылки результатов сборки через telegram"
+          } ]
+        },
+        "max" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/IMNotificationOptions"
+          }, {
+            "description" : "Настройки рассылки результатов сборки через MAX"
           } ]
         }
       },
