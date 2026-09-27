@@ -3,6 +3,7 @@ package ru.pulsar.jenkins.library.steps
 import ru.pulsar.jenkins.library.configuration.JobConfiguration
 import ru.pulsar.jenkins.library.configuration.notification.im.DiscordBotMessenger
 import ru.pulsar.jenkins.library.configuration.notification.im.DiscordWebhookMessenger
+import ru.pulsar.jenkins.library.configuration.notification.im.MaxMessenger
 import ru.pulsar.jenkins.library.configuration.notification.im.Messenger
 import ru.pulsar.jenkins.library.configuration.notification.im.TelegramMessenger
 import ru.pulsar.jenkins.library.utils.Logger
@@ -29,6 +30,7 @@ class SendNotifications implements Serializable {
 
         List<Messenger> messengers = [
             new TelegramMessenger(),
+            new MaxMessenger(),
             new DiscordWebhookMessenger(),
             new DiscordBotMessenger()
         ]
