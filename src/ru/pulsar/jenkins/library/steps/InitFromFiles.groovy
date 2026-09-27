@@ -42,7 +42,8 @@ class InitFromFiles implements Serializable {
 
         Logger.println("Выполнение загрузки конфигурации из файлов")
         String vrunnerPath = VRunner.getVRunnerPath()
-        def command = "$vrunnerPath update-dev --src $srcDir --ibconnection \"/F./build/ib\""
+        String base = config.baseName()
+        def command = "$vrunnerPath update-dev --src $srcDir --ibconnection \"$base\""
 
         def options = config.initInfoBaseOptions
 

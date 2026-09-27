@@ -1,5 +1,6 @@
 /* groovylint-disable NestedBlockDepth */
 import groovy.transform.Field
+import ru.pulsar.jenkins.library.configuration.InitInfoBaseMethod
 import ru.pulsar.jenkins.library.configuration.JobConfiguration
 import ru.pulsar.jenkins.library.configuration.SourceFormat
 import ru.pulsar.jenkins.library.utils.RepoUtils
@@ -56,7 +57,7 @@ void call() {
                     stage('Подготовка 1С базы') {
                         when {
                             beforeAgent true
-                            expression { config.stageFlags.needInfoBase() }
+                            expression { config.stageFlags.needInfoBase() && config.initInfoBaseOptions.initMethod != InitInfoBaseMethod.NOT_INIT}
                         }
 
                         stages {
@@ -148,6 +149,10 @@ void call() {
 
 
                                     stage('Архивация ИБ') {
+                                        when {
+                                            beforeAgent true
+                                            expression { config.basePath == '' }
+                                        }
                                         steps {
                                             timeout(time: config.timeoutOptions.zipInfoBase, unit: TimeUnit.MINUTES) {
                                                 printLocation()
@@ -221,6 +226,10 @@ void call() {
                         }
                         stages {
                             stage('Распаковка ИБ') {
+                                when {
+                                    beforeAgent true
+                                    expression { config.basePath == '' }
+                                }
                                 steps {
                                     restoreDebugOverridesIfNeeded()
                                     unzipInfobase()
@@ -248,6 +257,10 @@ void call() {
                             }
 
                             stage('Архивация ИБ') {
+                                when {
+                                    beforeAgent true
+                                    expression { config.basePath == '' }
+                                }
                                 steps {
                                     timeout(time: config.timeoutOptions.zipInfoBase, unit: TimeUnit.MINUTES) {
                                         printLocation()
@@ -269,6 +282,10 @@ void call() {
                         }
                         stages {
                             stage('Распаковка ИБ') {
+                                when {
+                                    beforeAgent true
+                                    expression { config.basePath == '' }
+                                }
                                 steps {
                                     restoreDebugOverridesIfNeeded()
                                     unzipInfobase()
@@ -295,6 +312,10 @@ void call() {
                         }
                         stages {
                             stage('Распаковка ИБ') {
+                                when {
+                                    beforeAgent true
+                                    expression { config.basePath == '' }
+                                }
                                 steps {
                                     restoreDebugOverridesIfNeeded()
                                     unzipInfobase()
@@ -333,6 +354,10 @@ void call() {
                         }
                         stages {
                             stage('Распаковка ИБ') {
+                                when {
+                                    beforeAgent true
+                                    expression { config.basePath == '' }
+                                }
                                 steps {
                                     restoreDebugOverridesIfNeeded()
                                     unzipInfobase()

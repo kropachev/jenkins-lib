@@ -44,6 +44,7 @@ class InitInfoBase implements Serializable {
         steps.withEnv(logosConfig) {
 
             String vrunnerPath = VRunner.getVRunnerPath()
+            String base = config.baseName()
 
             // Нужны ли настройки vrunner
             def options = config.initInfoBaseOptions
@@ -64,7 +65,7 @@ class InitInfoBase implements Serializable {
                     executeParameter = '\\' + executeParameter
                 }
                 command += executeParameter
-                command += ' --ibconnection "/F./build/ib"'
+                command += " --ibconnection \"$base\""
 
                 command += settingsIncrement
                 def migrationStatusFile = "build/migration-exit-status.log"
@@ -91,14 +92,14 @@ class InitInfoBase implements Serializable {
                 files = files.sort new OrderBy({ it.name })
                 files.each {
                     Logger.println("Первичная инициализация файлом ${it.path}")
-                    def command = "$vrunnerPath vanessa --settings ${it.path} --ibconnection \"/F./build/ib\""
+                    def command = "$vrunnerPath vanessa --settings ${it.path} --ibconnection \"$base\""
                     Integer exitStatus = VRunner.exec(command, true)
                     exitStatuses.put(command, exitStatus)
                 }
             } else {
                 options.additionalInitializationSteps.each {
                     Logger.println("Первичная инициализация командой ${it}")
-                    def command = "$vrunnerPath ${it} --ibconnection \"/F./build/ib\"${settingsIncrement}"
+                    def command = "$vrunnerPath ${it} --ibconnection \"$base\"${settingsIncrement}"
                     Integer exitStatus = VRunner.exec(command, true)
                     exitStatuses.put(command, exitStatus)
                 }
