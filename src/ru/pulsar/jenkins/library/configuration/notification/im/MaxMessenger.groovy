@@ -15,7 +15,7 @@ class MaxMessenger implements Messenger {
 
     private static final String MAX_API_URL = "https://platform-api2.max.ru/messages"
 
-    private static final StandardMarkdownFlavor FLAVOR = new StandardMarkdownFlavor()
+    private static final MaxMarkdownFlavor FLAVOR = new MaxMarkdownFlavor()
 
     @Override
     @NonCPS

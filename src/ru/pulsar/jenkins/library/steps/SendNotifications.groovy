@@ -30,9 +30,9 @@ class SendNotifications implements Serializable {
 
         List<Messenger> messengers = [
             new TelegramMessenger(),
-            new MaxMessenger(),
             new DiscordWebhookMessenger(),
-            new DiscordBotMessenger()
+            new DiscordBotMessenger(),
+            new MaxMessenger()
         ]
 
         messengers.each { messenger ->

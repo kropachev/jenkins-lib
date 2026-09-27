@@ -3,16 +3,13 @@ package ru.pulsar.jenkins.library.configuration.notification.im
 import com.cloudbees.groovy.cps.NonCPS
 
 /**
- * Разметка по спецификации CommonMark с расширениями GFM.
+ * Разметка markdown мессенджера MAX.
  *
- * Экранируются только символы, которые CommonMark или GFM могут трактовать как разметку:
- * {@code \ ` * _ [ ] ( ) ! ~ | < > # + - = .}
- *
- * Символы {@code &#123;} и {@code &#125;} намеренно не экранируются: их требует экранировать
- * MarkdownV2 у Telegram (см. {@link MarkdownV2Flavor}), но в CommonMark у них нет
- * никакого значения.
+ * Экранируются символы, которые MAX трактует как разметку, включая его расширения
+ * {@code ~~a~~}, {@code ++b++}, {@code ^^c^^}. Набор проверен на реальных сообщениях MAX,
+ * поэтому он отличается от {@link StandardMarkdownFlavor} и не должен с ним объединяться.
  */
-class StandardMarkdownFlavor implements MarkdownFlavor {
+class MaxMarkdownFlavor implements MarkdownFlavor {
 
     @Override
     @NonCPS
@@ -29,16 +26,11 @@ class StandardMarkdownFlavor implements MarkdownFlavor {
             .replace(']', '\\]')
             .replace('(', '\\(')
             .replace(')', '\\)')
-            .replace('!', '\\!')
             .replace('~', '\\~')
-            .replace('|', '\\|')
-            .replace('<', '\\<')
-            .replace('>', '\\>')
-            .replace('#', '\\#')
             .replace('+', '\\+')
-            .replace('-', '\\-')
-            .replace('=', '\\=')
-            .replace('.', '\\.')
+            .replace('^', '\\^')
+            .replace('#', '\\#')
+            .replace('>', '\\>')
     }
 
     @Override
