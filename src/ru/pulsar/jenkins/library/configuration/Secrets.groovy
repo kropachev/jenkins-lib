@@ -39,6 +39,12 @@ class Secrets implements Serializable {
     @JsonPropertyDescription("Токен авторизации MAX-бота для отправки уведомлений")
     String maxBotToken
 
+    @JsonPropertyDescription("Идентификатор учетных данных Jenkins с именем пользователя и паролем администратора кластера. Если идентификатор не задан, используется CLUSTER_ADMIN. Если таких учетных данных нет, команда выполняется без них")
+    String clusterAdmin
+
+    @JsonPropertyDescription("Идентификатор секретного текста Jenkins с паролем сервера отладки кластера (-debugServerPwd). Если идентификатор не задан, используется DEBUG_SERVER_PASSWORD. Если таких учетных данных нет, команда выполняется без них")
+    String debugServerPassword
+
     @Override
     @NonCPS
     String toString() {
@@ -53,6 +59,8 @@ class Secrets implements Serializable {
             ", discordChatId='" + discordChatId + '\'' +
             ", maxChatId='" + maxChatId + '\'' +
             ", maxBotToken='" + maxBotToken + '\'' +
+            ", clusterAdmin='" + clusterAdmin + '\'' +
+            ", debugServerPassword='" + debugServerPassword + '\'' +
             '}';
     }
 }
