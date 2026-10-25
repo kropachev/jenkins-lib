@@ -19,7 +19,8 @@
     "maxBotToken": "UNKNOWN_ID",
     "maxChatId": "UNKNOWN_ID",
     "clusterAdmin": "UNKNOWN_ID",
-    "debugServerPassword": "UNKNOWN_ID"
+    "debugServerPassword": "UNKNOWN_ID",
+    "infobaseUser": "UNKNOWN_ID"
   },
   "stages": {
     "initSteps": false,
